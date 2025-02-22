@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prevyne Okech Odhiambo - Portfolio</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Prevyne Okech</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="bg-primary text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Prevyne Okech</h1>
+      <p class="lead">Software Engineer | Web Application Developer | Virtual Assistant</p>
+      <a href="#contact" class="btn btn-light btn-lg">Hire Me</a>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">About Me</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <img src="/src/profile.jpg" alt="Prevyne Okech" class="img-fluid rounded-circle">
+        </div>
+        <div class="col-md-6">
+          <p>Hello! I'm a passionate Software Engineer and Web Developer with expertise in building scalable web applications and providing virtual assistance services. I specialize in front-end and back-end development, as well as automating workflows for businesses.</p>
+          <p>With a strong foundation in programming and problem-solving, I deliver high-quality solutions tailored to client needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="bg-light py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Skills</h2>
+      <div class="row">
+        <div class="col-md-4 text-center">
+          <h3>Web Development</h3>
+          <p>HTML, CSS, JavaScript, React, Node.js, Bootstrap</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <h3>Software Engineering</h3>
+          <p>Python, JavaScript, C++, SQL, Git, Docker</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <h3>Virtual Assistance</h3>
+          <p>Data Entry, Email Management, Social Media Management</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Projects</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./src/chatbot.png" class="card-img-top" alt="Project 1">
+            <div class="card-body">
+              <h5 class="card-title">Enquiry Chatbot</h5>
+              <p class="card-text">A fully functional college admissions enquiry chatbot created in Python Flask and JavaScript</p>
+              <a href="#" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./src/reactapp.png" class="card-img-top" alt="Project 2">
+            <div class="card-body">
+              <h5 class="card-title">Expense Tracker</h5>
+              <p class="card-text">An expense tracking app written created in React.js and Bootstrap CSS.</p>
+              <a href="#" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="./src/alkalearn.png" class="card-img-top" alt="Project 2">
+            <div class="card-body">
+              <h5 class="card-title">LMS Landing page</h5>
+              <p class="card-text">A landing page for an online Learning management system called AlkaLearn written in Bootstrap css and HTML5.</p>
+              <a href="#" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="src/portfolio.png" class="card-img-top" alt="Project 3">
+            <div class="card-body">
+              <h5 class="card-title">Portfolio Website</h5>
+              <p class="card-text">This responsive portfolio website built with Bootstrap.</p>
+              <a href="#" class="btn btn-primary">View Project</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="bg-dark text-white py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Contact Me</h2>
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Message</label>
+          <textarea class="form-control" id="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-secondary text-white text-center py-3">
+    <div class="container">
+      <p>&copy; 2025 Prevyne Okech Odhiambo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="scripts.js"></script>
+</body>
+</html>
