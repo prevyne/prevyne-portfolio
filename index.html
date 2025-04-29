@@ -1,160 +1,210 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prevyne Okech Odhiambo - Portfolio</title>
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link href="styles.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Okech Odhiambo - Portfolio</title>
+    <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">Prevyne Okech</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <header class="bg-primary text-white text-center py-5">
-    <div class="container">
-      <h1 class="display-4">Prevyne Okech</h1>
-      <p class="lead">Software Engineer | Web Application Developer | Virtual Assistant</p>
-      <a href="#contact" class="btn btn-light btn-lg">Hire Me</a>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section id="about" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">About Me</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <img src="/src/profile.jpg" alt="Prevyne Okech" class="img-fluid rounded-circle">
-        </div>
-        <div class="col-md-6">
-          <p>Hello! I'm a passionate Software Engineer and Web Developer with expertise in building scalable web applications and providing virtual assistance services. I specialize in front-end and back-end development, as well as automating workflows for businesses.</p>
-          <p>With a strong foundation in programming and problem-solving, I deliver high-quality solutions tailored to client needs.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="bg-light py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Skills</h2>
-      <div class="row">
-        <div class="col-md-4 text-center">
-          <h3>Web Development</h3>
-          <p>HTML, CSS, JavaScript, React, Node.js, Bootstrap</p>
-        </div>
-        <div class="col-md-4 text-center">
-          <h3>Software Engineering</h3>
-          <p>Python, JavaScript, C++, SQL, Git, Docker</p>
-        </div>
-        <div class="col-md-4 text-center">
-          <h3>Virtual Assistance</h3>
-          <p>Data Entry, Email Management, Social Media Management</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Projects</h2>
-      <div class="row">
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="./src/chatbot.png" class="card-img-top" alt="Project 1">
-            <div class="card-body">
-              <h5 class="card-title">Enquiry Chatbot</h5>
-              <p class="card-text">A fully functional college admissions enquiry chatbot created in Python Flask and JavaScript</p>
-              <a href="#" class="btn btn-primary">View Project</a>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">Prevyne Okech Odhiambo</a>
             </div>
-          </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="./src/reactapp.png" class="card-img-top" alt="Project 2">
-            <div class="card-body">
-              <h5 class="card-title">Expense Tracker</h5>
-              <p class="card-text">An expense tracking app written created in React.js and Bootstrap CSS.</p>
-              <a href="#" class="btn btn-primary">View Project</a>
-            </div>
-          </div>
+    </header>
+    <main>
+<!--Hero sectiion-->
+    <section class="hero">
+        <div class="container">
+            <h1>Hi, I'm Okech Prevyne Odhiambo</h1>
+            <p class="subtitle">Software Engineer | Web Application Developer | Virtual Assistant</p>
+            <a href="#contact" class="btn">Get in Touch</a>
         </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="./src/alkalearn.png" class="card-img-top" alt="Project 2">
-            <div class="card-body">
-              <h5 class="card-title">LMS Landing page</h5>
-              <p class="card-text">A landing page for an online Learning management system called AlkaLearn written in Bootstrap css and HTML5.</p>
-              <a href="#" class="btn btn-primary">View Project</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="src/portfolio.png" class="card-img-top" alt="Project 3">
-            <div class="card-body">
-              <h5 class="card-title">Portfolio Website</h5>
-              <p class="card-text">This responsive portfolio website built with Bootstrap.</p>
-              <a href="#" class="btn btn-primary">View Project</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="bg-dark text-white py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Contact Me</h2>
-      <form>
-        <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" required>
+    <section id="about" class="section about-section">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="assets/images/profile2.jpg" alt="profile">
+                </div>
+                <div class="about-text">
+                    <p>I'm a passionate developer with expertise in building web applications and providing technical solutions. 
+                        With 5+ years of experience, I help individuals and businesses create efficient digital products.</p>
+                    <p>When I'm not coding, you can find me swimming, gaming, reading tech blogs, or experimenting with new frameworks.</p>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" required>
+    </section>
+<!--Education Section-->
+<section id="education" class="section education-section">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education-category">
+                    <h3>Bachelor of Science in Information Technology</h3>
+                    <p>Kabarak University, Kenya</p>
+                    <p>Graduated: December, 2024</p>
+                </div>
+                <div class="education-category">
+                    <h3>Virtual Assistance</h3>
+                    <p>ALX Academy Africa</p>
+                    <p>Graduated: September, 2024</p>
+                </div>
+                <div class="education-category">
+                    <h3>Back-end Pro-dev Web Development</h3>
+                    <p>ALX Academy Africa</p>
+                    <p>(Ongoing)</p>
+                </div>
+                <div class="education-category">
+                    <h3>Software Engineering</h3>
+                    <p>Power Learn Project Africa</p>
+                    <p>(Ongoing)</p>
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-          <label for="message" class="form-label">Message</label>
-          <textarea class="form-control" id="message" rows="5" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-    </div>
-  </section>
+    </section>
+<!--Experience Section-->
 
-  <!-- Footer -->
-  <footer class="bg-secondary text-white text-center py-3">
-    <div class="container">
-      <p>&copy; 2025 Prevyne Okech Odhiambo. All rights reserved.</p>
-    </div>
-  </footer>
+<!--Skills section-->
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h2>My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <ul>
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>PHP & MySQL</li>
+                        <li>Django & Flask</li>
+                        <li>React.js</li>
+                        <li>Node.js</li>
+                        <li>Bootstrap4</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Software Engineering</h3>
+                    <ul>
+                        <li>Python Programming</li>
+                        <li>C Programming</li>
+                        <li>C++ Programming</li>
+                        <li>Git Version Control</li>
+                        <li>Unix DevOps system Engineering</li>
+                        <li>Docker</li>
+                        <li>SQL-Alchemy</li>
+                        <li>Software Project Management & Metrics</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Virtual Assistance</h3>
+                    <ul>
+                        <li>Email Management</li>
+                        <li>Data Entry</li>
+                        <li>Social Media Management</li>
+                        <li>Calendar Management</li>
+                        <li>Customer Support</li>
+                        <li>Google Workspaces</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h3>Other Skills</h3>
+                    <ul>
+                        <li>Problem-Solving skills</li>
+                        <li>Logical Thinking</li>
+                        <li>Communication</li>
+                        <li>Teamwork</li>
+                        <li>Time Management</li>
+                        <li>Organization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--Projects section-->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <img src="src/Chatbot_2.png" alt="E-Commerce Website">
+                    <h3>General enquiry chatbot</h3>
+                    <p>A fully functional general enquiry Chatbot writen in Python with Flask, JavaScript and TailWind CSS.</p>
+                    <a href="https://chatbot-0zdm.onrender.com/" class="btn">View Live site</a>
+                </div>
+                <div class="project-card">
+                    <img src="src/reactapp.png" alt="expense-tracker">
+                    <h3>Expense tracking app</h3>
+                    <p>A front-end web application for tracking expenses in realtime. It is written  in JavaScript with React.js Framework.</p>
+                    <a href="https://react-expense-tracking-app.vercel.app/" class="btn">View live site</a>
+                </div>
+                <div class="project-card">
+                    <img src="src/chatbot.png" alt="admissions-chatbot">
+                    <h3>College admissions enquiry chatbot</h3>
+                    <p>A college admissions enquiry processing and management chatbot written in Python with Catterbot, Flask, Javascript and XML.</p>
+                    <a href="https://github.com/prevyne/College-Admissions-Enquiry-Chatbot-with-Python" class="btn">View Project on Github</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--Contact section-->
+    <section id="contact" class="section contact-section">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><i class="fas fa-envelope"></i>prevyneoketch6@gmail.com</p>
+                    <p><i class="fas fa-phone"></i> +254712918350</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Nakuru, Kenya</p>
+                    <p><i class="fa-brands fa-github"></i>
+                        <a href="https://github.com/prevyne" target="_blank">https://github.com/prevyne</a>
+                    </p>
+                    <p><i class="fa-brands fa-linkedin"></i>
+                        <a href="https://www.linkedin.com/in/prevyne-okech" target="_blank">LinkedIn</a>
+                    </p>
+                </div>
+                <form action="#" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Custom JS -->
-  <script src="scripts.js"></script>
+</main>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/prevyne"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/prevyne-okech"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>Okech Odhiambo. All rights reserved.</p>
+        </div>
+    </footer>
 </body>
 </html>
