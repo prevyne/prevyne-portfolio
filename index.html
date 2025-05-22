@@ -177,7 +177,7 @@
                         <a href="https://www.linkedin.com/in/prevyne-okech" target="_blank">LinkedIn</a>
                     </p>
                 </div>
-                <form action="#" method="POST" class="contact-form">
+                <form id="contact-form" class="contact-form">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" id="name" name="name" required>
@@ -206,5 +206,36 @@
             <p>Okech Odhiambo. All rights reserved.</p>
         </div>
     </footer>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "iAC4BvOGycdAcvDLA", // Get this from your EmailJS account (Account -> API Keys)
+      });
+   })();
+</script>
+
+<script type="text/javascript">
+    window.onload = function() {
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Change to your Service ID and Template ID
+            const serviceID = 'service_6iv1go7';
+            const templateID = 'template_u322tjj';
+
+            // Send the form data using EmailJS
+            emailjs.sendForm(serviceID, templateID, this)
+                .then(() => {
+                    alert('Message sent successfully!');
+                    document.getElementById('contact-form').reset(); // Reset the form
+                }, (err) => {
+                    alert('Failed to send message. Error: ' + JSON.stringify(err));
+                });
+        });
+    }
+</script>
 </body>
 </html>
