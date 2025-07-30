@@ -198,7 +198,7 @@
                     <div class="card project-card h-100">
                         <img src="src/Chatbot_2.png" class="card-img-top" alt="expense-tracker">
                         <div class="card-body d-flex flex-column">
-                            <h3 class="card-title"></h3>
+                            <h3 class="card-title">General Enquiry Chatbot Assistant</h3>
                             <p class="card-text">A fully functional general enquiry Chatbot written in Python with Flask, JavaScript and TailWind CSS.</p>
                             <a href="https://chatbot-0zdm.onrender.com/" class="btn btn-primary mt-auto">View live site</a>
                         </div>
@@ -294,8 +294,8 @@
     if (document.getElementById('contact-form')) {
         document.getElementById('contact-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const serviceID = 'service_6iv1go7'; // Your EmailJS service ID
-            const templateID = 'template_u322tjj'; // Your EmailJS template ID
+            const serviceID = 'service_6iv1go7'; 
+            const templateID = 'template_u322tjj';
 
             emailjs.sendForm(serviceID, templateID, this)
                 .then(() => {
