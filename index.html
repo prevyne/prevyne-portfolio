@@ -1,185 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prevyne Okech Odhiambo - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
-        
-        @property --angle {
-            syntax: '<angle>';
-            initial-value: 0deg;
-            inherits: false;
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prevyne Okech Odhiambo - Portfolio</title>
+  <meta name="description" content="Prevyne Okech — Full Stack Developer (Django, MERN, Flask). Portfolio and project showcase." />
+  <meta name="keywords" content="Prevyne Okech, Django, React, Flask, Full-Stack Developer, Kenya, Portfolio" />
+  <meta name="author" content="Prevyne Okech" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Prevyne Okech | Software Engineer" />
+  <meta property="og:description" content="Portfolio of Prevyne Okech — Full Stack Developer specializing in Django, MERN and Flask." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/images/profile_best.jpg" />
+  <meta property="og:url" content="https://prevyne.dev/" />
+  <link rel="icon" href="assets/images/profile_best.jpg" type="image/png" />
 
-        :root {
-            --background-dark: #0A0A1A;
-            --primary-glow: #00BFFF;
-            --primary-glow-rgb: 0, 191, 255;
-            --secondary-dark: #101827;
-            --secondary-glow: #ff00c1;
-        }
+  <!-- Tailwind (kept for convenience) -->
+  <script src="https://cdn.tailwindcss.com" defer></script>
 
-        body {
-            font-family: 'Roboto Mono', monospace;
-            scroll-behavior: smooth;
-            background-color: var(--background-dark);
-            color: #E0E0E0;
-        }
+  <!-- Fonts & icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-        .section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 6rem 1.5rem;
-            position: relative;
-            opacity: 0;
-            transition: opacity 1s ease-out;
-            width: 100%;
-            overflow: hidden;
-            background-color: var(--background-dark);
-            background-image: 
-                linear-gradient(rgba(var(--primary-glow-rgb), 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(var(--primary-glow-rgb), 0.05) 1px, transparent 1px);
-            background-size: 3rem 3rem;
-        }
+  <style>
+    :root{
+      --bg:#0A0A1A;
+      --primary:#00BFFF;
+      --primary-rgb:0,191,255;
+      --accent:#64FFDA;
+      --card:#101827;
+      --glass: rgba(16,24,39,0.82);
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:'Roboto Mono', monospace;
+      background:var(--bg);
+      color:#E0E0E0;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
 
-        .section.visible {
-            opacity: 1;
-        }
+    /* Preloader */
+    #preloader{
+      position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg, rgba(0,0,0,0.88), rgba(10,10,26,0.96));
+      z-index:9999;flex-direction:column;gap:12px;
+    }
+    .loader-bar{
+      width:240px;height:10px;border-radius:999px;background:rgba(255,255,255,0.04);overflow:hidden;
+      box-shadow:0 0 24px rgba(var(--primary-rgb),0.06) inset;
+    }
+    .loader-bar > i{
+      display:block;height:100%;width:0%;
+      background:linear-gradient(90deg,var(--primary),#0077b3);
+      box-shadow:0 0 26px rgba(var(--primary-rgb),0.28);
+      transition:width 600ms ease;
+    }
+    #preloader p{color:#9CA3AF;margin:0;font-size:0.98rem;letter-spacing:0.6px;}
 
-        .section .animate-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
+    /* Layout */
+    nav{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.04)}
+    .container{max-width:1100px;margin:0 auto;padding:0 1rem}
 
-        .section.visible .animate-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 0}
+    .brand{font-weight:700;color:#fff}
+    .nav-links{display:flex;gap:1.25rem;align-items:center}
+    .nav-link{position:relative;color:#cbd5e1;text-decoration:none;padding-bottom:4px}
+    .nav-link:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:right;transition:transform 250ms ease}
+    .nav-link:hover:after,.nav-link.active:after{transform:scaleX(1);transform-origin:left}
+    .menu-btn{display:none;background:transparent;border:0;cursor:pointer}
 
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
+    /* Sections */
+    .section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1rem;position:relative;overflow:hidden;background:var(--bg)}
+    .section-inner{z-index:2;width:100%;max-width:1100px;margin:0 auto}
+    .visible{opacity:1;transform:none}
 
-        .content-container {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
+    /* Hero specifics */
+    #hero{position:relative;}
+    #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
+    #hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,26,0.6) 0%, rgba(10,10,26,0.9) 100%);z-index:0}
+    .hero-content{position:relative;z-index:1;text-align:center;padding-top:3rem}
+    .hero-title{font-size:clamp(2rem,5vw,4rem);line-height:1.02;color:var(--accent);font-weight:700}
+    .hero-sub{color:#93C5FD;margin-top:0.75rem}
+    .hero-ctas{margin-top:1.5rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
 
-        .project-card, .skill-card, .education-card {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            background-color: rgba(16, 24, 39, 0.95);
-            backdrop-filter: blur(5px);
-            border-radius: 0.75rem;
-            overflow: hidden;
-            border: 1px solid rgba(var(--primary-glow-rgb), 0.2);
-            perspective: 1000px;
-            height: 100%;
-            position: relative;
-            z-index: 1;
-        }
+    .btn-primary{background:var(--primary);color:#041025;padding:0.85rem 1.25rem;border-radius:10px;font-weight:700;border:2px solid rgba(0,191,255,0.12);box-shadow:0 8px 30px rgba(var(--primary-rgb),0.06);text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:transform 150ms ease,box-shadow 150ms}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(var(--primary-rgb),0.12)}
+    .btn-ghost{border:1px solid rgba(255,255,255,0.06);padding:0.75rem 1rem;border-radius:8px;color:#cfe9ff;text-decoration:none}
 
-        .project-card:hover, .skill-card:hover, .education-card:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(-3deg);
-            box-shadow: 0 0 30px rgba(var(--primary-glow-rgb), 0.3);
-            border-color: transparent;
-        }
-        
-        .project-card::after, .skill-card::after, .education-card::after {
-            content: "";
-            position: absolute;
-            top: -1px; left: -1px;
-            width: calc(100% + 2px);
-            height: calc(100% + 2px);
-            border-radius: 0.75rem;
-            background: conic-gradient(from var(--angle), var(--primary-glow), #0077b3, var(--primary-glow));
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            animation: spin 3s linear infinite paused;
-        }
+    /* Cards */
+    .grid{display:grid;gap:1.25rem}
+    .projects-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+    .card{background:var(--glass);border-radius:0.75rem;border:1px solid rgba(var(--primary-rgb),0.12);overflow:hidden;position:relative;transition:transform 300ms ease,box-shadow 300ms}
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(var(--primary-rgb),0.06)}
+    .card img{width:100%;height:160px;object-fit:cover;display:block}
+    .card-body{padding:1rem}
+    .card-title{font-weight:700;color:#fff;margin-bottom:0.5rem}
+    .card-desc{color:#9CA3AF;font-size:0.95rem;margin-bottom:0.75rem}
 
-        .project-card:hover::after, .skill-card:hover::after, .education-card:hover::after {
-            opacity: 1;
-            animation-play-state: running;
-        }
-        
-        /* Make text inside cards darker on hover for readability */
-        .project-card:hover p, .project-card:hover h3, .project-card:hover li,
-        .skill-card:hover p, .skill-card:hover h3, .skill-card:hover li,
-        .education-card:hover p, .education-card:hover h3, .education-card:hover li {
-            color: #101827;
-            transition: color 0.3s ease;
-        }
+    /* overlay buttons */
+    .card-overlay{
+      position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:0.5rem;
+      background:linear-gradient(180deg, rgba(2,6,23,0.0), rgba(2,6,23,0.6));opacity:0;transition:opacity 220ms ease;
+    }
+    .card:hover .card-overlay{opacity:1}
+    .overlay-btn{padding:0.6rem 0.9rem;border-radius:8px;background:rgba(0,0,0,0.45);backdrop-filter:blur(4px);color:var(--primary);text-decoration:none;border:1px solid rgba(var(--primary-rgb),0.14);font-weight:700}
 
-        /* Ensure icons and links inside cards retain their accent color on hover */
-        .project-card:hover a,
-        .skill-card:hover .fas {
-            color: var(--primary-glow);
-        }
+    /* skill/education grid */
+    .small-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 
-        @keyframes spin {
-            to { --angle: 360deg; }
-        }
+    /* contact form */
+    .form-input{background:#1F2937;border:1px solid #4B5563;color:#F3F4F6;padding:0.75rem;border-radius:8px;width:100%}
+    .form-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 15px rgba(var(--primary-rgb),0.12)}
 
+    /* audio control */
+    .audio-toggle{
+      position:fixed;right:20px;bottom:20px;z-index:80;background:rgba(3,7,18,0.6);border-radius:999px;padding:12px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);
+      border:1px solid rgba(255,255,255,0.04);opacity:0;transform:translateY(12px);transition:opacity 250ms ease,transform 250ms ease;
+    }
+    .audio-toggle.visible{opacity:1;transform:translateY(0)}
+    .audio-toggle .icon{font-size:18px;color:rgba(148,163,184,1);transition:color 160ms ease,filter 160ms}
+    .audio-toggle.active .icon{color:var(--primary);filter:drop-shadow(0 0 10px rgba(var(--primary-rgb),0.9))}
+    .audio-tooltip{position:absolute;bottom:60px;right:0;background:rgba(0,0,0,0.7);color:#cbd5e1;padding:6px 8px;border-radius:6px;font-size:13px;opacity:0;transform:translateY(6px);transition:opacity 200ms ease,transform 200ms ease;pointer-events:none}
+    .audio-toggle:hover .audio-tooltip{opacity:1;transform:translateY(0)}
 
-        .nav-link {
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-            position: relative;
-            padding-bottom: 4px;
-        }
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary-glow);
-            transform: scaleX(0);
-            transform-origin: bottom right;
-            transition: transform 0.3s ease-out;
-        }
-        .nav-link:hover:after, .active-nav:after {
-            transform: scaleX(1);
-            transform-origin: bottom left;
-        }
-        .active-nav {
-            color: var(--primary-glow);
-            text-shadow: 0 0 10px var(--primary-glow);
-        }
+    /* footer */
+    footer{padding:2rem 1rem;text-align:center;border-top:1px solid rgba(255,255,255,0.03);color:#9CA3AF}
 
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(0, 191, 255, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
+    /* responsive tweaks */
+    @media (max-width:768px){
+      .nav-links{display:none}
+      .menu-btn{display:inline-block}
+      .section{padding:4rem 1rem}
+      .card img{height:140px}
+      .audio-toggle{right:12px;bottom:12px}
+    }
+    @media (max-width:480px){
+      .hero-title{font-size:1.6rem}
+      .card img{height:120px}
+      .loader-bar{width:180px}
+    }
 
-        .form-input {
-            background-color: #1F2937;
-            border: 1px solid #4B5563;
-            color: #F3F4F6;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .form-input:focus {
-            outline: none;
-            border-color: var(--primary-glow);
-            box-shadow: 0 0 15px rgba(var(--primary-glow-rgb), 0.5);
-        }
-
-        .glitch {
+    /* Glitch effect */
+    .glitch {
             position: relative;
             color: white;
             animation: glitch-skew 1s infinite linear alternate-reverse;
@@ -210,372 +176,515 @@
         @keyframes glitch-anim-2 { 0% { clip-path: inset(50% 0 40% 0); } 100% { clip-path: inset(10% 0 75% 0); } }
         @keyframes glitch-skew { 0% { transform: skewX(0deg); } 100% { transform: skewX(0.5deg); } }
 
-        .section-title {
-            position: relative;
-            display: inline-block;
-            padding: 0 1rem;
-            text-shadow: 0 0 15px rgba(var(--primary-glow-rgb), 0.7);
-        }
-        .section-title::before, .section-title::after {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            border-color: var(--primary-glow);
-            border-style: solid;
-            transition: transform 0.3s ease-out;
-        }
-        .section-title::before { top: -5px; left: -5px; border-width: 2px 0 0 2px; }
-        .section-title::after { bottom: -5px; right: -5px; border-width: 0 2px 2px 0; }
-    </style>
+  </style>
 </head>
-<body class="bg-gray-900 text-gray-200">
+<body>
 
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black bg-opacity-50 backdrop-blur-md p-4 border-b border-gray-800">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-white hover:text-sky-400 transition-colors">PREVYNE_OKECH</a>
-            <div class="hidden md:flex space-x-6 md:space-x-8">
-                <a href="#hero" class="nav-link text-gray-300">Home</a>
-                <a href="#about" class="nav-link text-gray-300">About</a>
-                <a href="#education" class="nav-link text-gray-300">Education</a>
-                <a href="#skills" class="nav-link text-gray-300">Skills</a>
-                <a href="#projects" class="nav-link text-gray-300">Projects</a>
-                <a href="#contact" class="nav-link text-gray-300">Contact</a>
-            </div>
-            <button id="menu-btn" class="md:hidden navbar-toggler">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+  <!-- Preloader -->
+  <div id="preloader" aria-hidden="true">
+    <img src="assets/images/profile_best.jpg" alt="Prevyne Okech" style="width:88px;height:88px;border-radius:999px;border:3px solid rgba(100,255,218,0.08);object-fit:cover;box-shadow:0 8px 40px rgba(0,191,255,0.06)">
+    <p>Launching Portfolio Interface…</p>
+    <div class="loader-bar"><i id="loader-bar-inner"></i></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <div class="container nav-inner">
+      <a class="brand" href="#">PREVYNE_OKECH</a>
+      <div class="nav-links" role="navigation" aria-label="Primary">
+        <a class="nav-link" href="#hero">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-label="Open menu">
+        <i class="fas fa-bars" style="color:rgba(100,255,218,0.9);font-size:20px"></i>
+      </button>
+    </div>
+    <div id="mobileNav" style="display:none;background:rgba(0,0,0,0.6);padding:0.5rem;">
+      <div class="container" style="display:flex;flex-direction:column;gap:8px">
+        <a class="nav-link" href="#hero">Home</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#education">Education</a>
+        <a class="nav-link" href="#skills">Skills</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero" class="section" aria-label="Hero">
+    <canvas id="hero-canvas" aria-hidden="true"></canvas>
+    <div class="section-inner hero-content">
+      <h1 class="hero-title glitch" aria-level="1" data-text="Okech Prevyne Odhiambo">Okech Prevyne Odhiambo</h1>
+      <p class="hero-sub">Software Engineer / Virtual Assistant / Web Developer</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="#contact">Initiate Contact</a>
+        <a class="btn-ghost" href="assets/Prevyne_Okech_Resume.pdf" download>Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section" aria-label="About">
+    <div class="section-inner">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">About Me</h2>
+      <div class="grid small-grid" style="align-items:center;gap:1.25rem">
+        <div style="display:flex;justify-content:center">
+          <img src="assets/images/profile_best.jpg" alt="Prevyne Okech portrait" style="width:220px;height:220px;border-radius:12px;object-fit:cover;border:4px solid rgba(100,255,218,0.06)" loading="lazy">
         </div>
-        <div id="mobile-menu" class="hidden md:hidden mt-4 bg-black bg-opacity-70 rounded-lg">
-            <a href="#hero" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link">Home</a>
-            <a href="#about" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link">About</a>
-            <a href="#education" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link">Education</a>
-            <a href="#skills" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link">Skills</a>
-            <a href="#projects" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link">Projects</a>
-            <a href="#contact" class="block py-3 px-4 text-sm text-gray-300 hover:bg-gray-800 nav-link">Contact</a>
+        <div>
+          <p style="color:#cbd5e1;line-height:1.6">
+            I am a full stack software engineer and web applications developer with over four years of experience, specializing in the M.E.R.N stack and Django. My mission is to use technology to build digital products and provide pragmatic solutions for enterprises and SMEs.
+          </p>
         </div>
-    </nav>
+      </div>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section id="hero" class="section h-screen flex justify-center items-center text-center bg-transparent">
-        <canvas id="hero-canvas"></canvas>
-        <div class="content-container">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 glitch" data-text="Okech Prevyne Odhiambo">Okech Prevyne Odhiambo</h1>
-            <p class="text-lg md:text-xl text-sky-300 animate-in" style="transition-delay: 100ms;">Software Engineer / Virtual Assistant / Web Developer</p>
-             <a href="#contact" class="mt-8 inline-block bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-8 rounded-md border-2 border-sky-500 hover:border-sky-400 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(0,191,255,0.8)] animate-in" style="transition-delay: 200ms;">
-                > Initiate Contact
-            </a>
+  <!-- Education -->
+  <section id="education" class="section" aria-label="Education">
+    <div class="section-inner">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Education</h2>
+      <div class="grid small-grid" style="margin-top:0.75rem">
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">BSc in Information Technology</h3>
+          <p class="card-desc">Kabarak University, Kenya — Graduated Dec 2024</p>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-sky-400 section-title animate-in">About Me</h2>
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-2 flex justify-center animate-in" style="transition-delay: 100ms;">
-                    <img src="assets/images/profile_best.jpg" alt="Prevyne Okech" class="w-100 h-150 md:w-64 md:h-64 border-4 border-sky-400">
-                </div>
-                <div class="md:col-span-3 text-center md:text-left animate-in" style="transition-delay: 200ms;">
-                    <p class="text-base lg:text-lg text-gray-300 leading-relaxed">
-                        I am a full stack software engineer and web applications developer with over four years of experience, specializing in the M.E.R.N stack. My mission is to use my technical knowledge to build digital products and provide solutions to enterprises and SMEs alike.
-                    </p>
-                </div>
-            </div>
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Virtual Assistance</h3>
+          <p class="card-desc">ALX Academy Africa — Graduated Sep 2024</p>
         </div>
-    </section>
-    
-    <!-- Education Section -->
-    <section id="education" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-sky-400 section-title animate-in">Education</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="education-card p-6 animate-in" style="transition-delay: 100ms;">
-                    <h3 class="text-lg font-bold mb-2 text-white">BSc in Information Technology</h3>
-                    <p class="text-sky-400 mb-1">Kabarak University, Kenya</p>
-                    <p class="text-gray-400">Graduated: Dec 2024</p>
-                </div>
-                <div class="education-card p-6 animate-in" style="transition-delay: 200ms;">
-                    <h3 class="text-lg font-bold mb-2 text-white">Virtual Assistance</h3>
-                    <p class="text-sky-400 mb-1">ALX Academy Africa</p>
-                    <p class="text-gray-400">Graduated: Sep 2024</p>
-                </div>
-                <div class="education-card p-6 animate-in" style="transition-delay: 300ms;">
-                    <h3 class="text-lg font-bold mb-2 text-white">Back-end Pro-dev Web Dev</h3>
-                    <p class="text-sky-400 mb-1">ALX Academy Africa</p>
-                    <p class="text-gray-400">(Ongoing)</p>
-                </div>
-                <div class="education-card p-6 animate-in" style="transition-delay: 400ms;">
-                    <h3 class="text-lg font-bold mb-2 text-white">Software Engineering</h3>
-                    <p class="text-sky-400 mb-1">Power Learn Project Africa</p>
-                    <p class="text-gray-400">Feb-Jul 2025</p>
-                </div>
-            </div>
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Back-end Pro-dev Web Dev</h3>
+          <p class="card-desc">ALX Academy Africa — Ongoing</p>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-sky-400 section-title animate-in">Skillset Matrix</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="skill-card p-6 animate-in" style="transition-delay: 100ms;">
-                    <h3 class="text-xl font-bold mb-3 text-white">Web Development</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>HTML5 & CSS3</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>JavaScript (ES6+)</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>React.js & Node.js</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Django & Flask</li>
-                    </ul>
-                </div>
-                 <div class="skill-card p-6 animate-in" style="transition-delay: 200ms;">
-                    <h3 class="text-xl font-bold mb-3 text-white">Software Engineering</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Python, C, C++</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Git & Version Control</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Docker & DevOps</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>SQL-Alchemy</li>
-                    </ul>
-                </div>
-                <div class="skill-card p-6 animate-in" style="transition-delay: 300ms;">
-                    <h3 class="text-xl font-bold mb-3 text-white">Virtual Assistance</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Email Management</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Data Entry</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Social Media Mgmt</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Google Workspaces</li>
-                    </ul>
-                </div>
-                <div class="skill-card p-6 animate-in" style="transition-delay: 400ms;">
-                    <h3 class="text-xl font-bold mb-3 text-white">Soft Skills</h3>
-                    <ul class="text-gray-400 space-y-2">
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Problem-Solving</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Communication</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Teamwork</li>
-                        <li><i class="fas fa-check text-sky-400 mr-2"></i>Time Management</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Software Engineering</h3>
+          <p class="card-desc">Power Learn Project Africa — Feb–Jul 2025</p>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container mx-auto">
-            <h2 class="text-4xl font-bold text-center mb-12 text-sky-400 section-title animate-in">Project Showcase</h2>
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card animate-in" style="transition-delay: 100ms;">
-                    <img src="src/kazi-match.jpg" alt="Kazi-Match" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 text-white">Kazi-Match Platform</h3>
-                        <p class="text-gray-400 mb-4">A job search platform that matches candidates with suitable jobs based on their skills.</p>
-                        <a href="https://kazi-match.vercel.app/" class="text-sky-400 hover:text-sky-300 font-medium">Access Project &rarr;</a>
-                    </div>
-                </div>
-                <div class="project-card animate-in" style="transition-delay: 200ms;">
-                    <img src="src/Chatbot_2.png" alt="General Enquiry Chatbot" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 text-white">General Enquiry Chatbot</h3>
-                        <p class="text-gray-400 mb-4">A fully functional general enquiry Chatbot written in Python with Flask and Tailwind CSS.</p>
-                        <a href="https://chatbot-0zdm.onrender.com/"" class="text-sky-400 hover:text-sky-300 font-medium">Access Project &rarr;</a>
-                    </div>
-                </div>
-                <div class="project-card animate-in" style="transition-delay: 300ms;">
-                     <img src="src/chatbot.png" alt="College Admissions Chatbot" class="w-full h-48 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 text-white">Admissions Enquiry Bot</h3>
-                        <p class="text-gray-400 mb-4">A college admissions enquiry chatbot written in Python with ChatterBot and Flask.</p>
-                        <a href="https://github.com/prevyne/College-Admissions-Enquiry-Chatbot-with-Python"" class="text-sky-400 hover:text-sky-300 font-medium">View Source &rarr;</a>
-                    </div>
-                </div>
-            </div>
+  <!-- Skills -->
+  <section id="skills" class="section" aria-label="Skills">
+    <div class="section-inner">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Skillset Matrix</h2>
+      <div class="grid projects-grid" style="margin-top:0.75rem">
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Web Development</h3>
+          <p class="card-desc">HTML5, CSS3, JavaScript (ES6+), React.js, Node.js, Django, Flask</p>
         </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container mx-auto max-w-4xl">
-            <h2 class="text-4xl font-bold text-center mb-12 text-sky-400 section-title animate-in">Establish Connection</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="space-y-4 text-gray-300 animate-in" style="transition-delay: 100ms;">
-                    <h3 class="text-2xl font-bold text-white">Contact Vectors</h3>
-                    <p class="flex items-center"><i class="fas fa-envelope mr-3 text-sky-400"></i> prevyneoketch6@gmail.com</p>
-                    <p class="flex items-center"><i class="fas fa-phone mr-3 text-sky-400"></i> +254712918350</p>
-                    <p class="flex items-center"><i class="fas fa-map-marker-alt mr-3 text-sky-400"></i> Nakuru, Kenya</p>
-                    <div class="flex space-x-4 pt-4">
-                        <a href="https://github.com/prevyne" target="_blank" class="text-gray-400 hover:text-sky-400 transition-transform duration-300 hover:scale-110"><i class="fab fa-github fa-2x"></i></a>
-                        <a href="https://www.linkedin.com/in/prevyne-okech" target="_blank" class="text-gray-400 hover:text-sky-400 transition-transform duration-300 hover:scale-110"><i class="fab fa-linkedin fa-2x"></i></a>
-                    </div>
-                </div>
-                <form id="contact-form" class="space-y-4 animate-in" style="transition-delay: 200ms;">
-                    <div>
-                        <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Your Alias</label>
-                        <input type="text" id="name" name="name" required class="w-full p-3 rounded-md form-input">
-                    </div>
-                    <div>
-                        <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Your Secure Email</label>
-                        <input type="email" id="email" name="email" required class="w-full p-3 rounded-md form-input">
-                    </div>
-                    <div>
-                        <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message Payload</label>
-                        <textarea id="message" name="message" rows="5" required class="w-full p-3 rounded-md form-input"></textarea>
-                    </div>
-                    <button type="submit" class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 px-6 rounded-md transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(0,191,255,0.8)]">
-                        Transmit Message
-                    </button>
-                </form>
-            </div>
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Software Engineering</h3>
+          <p class="card-desc">Python, C/C++, Git, Docker, DevOps essentials, SQLAlchemy</p>
         </div>
-    </section>
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Virtual Assistance</h3>
+          <p class="card-desc">Email management, Data entry, Social media management, Google Workspaces</p>
+        </div>
+        <div class="card" style="padding:1rem">
+          <h3 class="card-title">Soft Skills</h3>
+          <p class="card-desc">Problem-solving, Communication, Teamwork, Time management</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <footer class="text-center py-6 bg-black">
-        <p class="text-gray-600">&copy; <script>document.write(new Date().getFullYear())</script> Prevyne Okech Odhiambo // All rights reserved.</p>
-    </footer>
+  <!-- Projects -->
+  <section id="projects" class="section" aria-label="Projects">
+    <div class="section-inner">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Project Showcase</h2>
+      <div class="grid projects-grid" style="margin-top:0.75rem">
+        <div class="card">
+          <img src="src/kazi-match.jpg" alt="Kazi-Match" loading="lazy">
+          <div class="card-overlay">
+            <a class="overlay-btn" href="https://kazi-match.vercel.app/" target="_blank" rel="noreferrer">Live Demo</a>
+            <a class="overlay-btn" href="https://github.com/prevyne/juakali-marketplace" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Kazi-Match Platform</h3>
+            <p class="card-desc">A Django + React platform that matches candidates with suitable jobs based on their skills.</p>
+          </div>
+        </div>
 
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        <div class="card">
+          <img src="src/Chatbot_2.png" alt="General Enquiry Chatbot" loading="lazy">
+          <div class="card-overlay">
+            <a class="overlay-btn" href="https://chatbot-0zdm.onrender.com/" target="_blank" rel="noreferrer">Live Demo</a>
+            <a class="overlay-btn" href="https://github.com/prevyne" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">General Enquiry Chatbot</h3>
+            <p class="card-desc">A Flask chatbot with Tailwind styling to handle general enquiries.</p>
+        </div>
+        </div>
 
-    <script>
-        (function(){
-            emailjs.init({ publicKey: "iAC4BvOGycdAcvDLA" }); 
-        })();
+        <div class="card">
+          <img src="src/chatbot.png" alt="Admissions Enquiry Bot" loading="lazy">
+          <div class="card-overlay">
+            <a class="overlay-btn" href="https://github.com/prevyne/College-Admissions-Enquiry-Chatbot-with-Python" target="_blank" rel="noreferrer">View Source</a>
+            <a class="overlay-btn" href="#" onclick="return false;">Live Demo</a>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Admissions Enquiry Bot</h3>
+            <p class="card-desc">College admissions enquiry bot written with Flask & ChatterBot.</p>
+          </div>
+        </div>
 
-        const contactForm = document.getElementById('contact-form');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const serviceID = 'service_6iv1go7'; 
-                const templateID = 'template_u322tjj';
+      </div>
+    </div>
+  </section>
 
-                const showMessage = (message, isError = false) => {
-                    const messageBox = document.createElement('div');
-                    messageBox.textContent = message;
-                    Object.assign(messageBox.style, {
-                        position: 'fixed', bottom: '20px', right: '20px', padding: '1rem',
-                        borderRadius: '0.5rem', color: 'white', zIndex: '1000',
-                        backgroundColor: isError ? '#EF4444' : '#22C55E',
-                        opacity: '0', transition: 'opacity 0.5s ease'
-                    });
-                    document.body.appendChild(messageBox);
-                    
-                    setTimeout(() => messageBox.style.opacity = '1', 10);
-                    setTimeout(() => {
-                        messageBox.style.opacity = '0';
-                        setTimeout(() => document.body.removeChild(messageBox), 500);
-                    }, 4000);
-                };
+  <!-- Contact -->
+  <section id="contact" class="section" aria-label="Contact">
+    <div class="section-inner">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Establish Connection</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+      <div>
+        <h3 style="font-weight:700;color:#fff">Contact Vectors</h3>
+        <p style="color:#cbd5e1"><i class="fas fa-envelope text-sky-400"></i> prevyneoketch6@gmail.com</p>
+        <p style="color:#cbd5e1"><i class="fas fa-phone text-sky-400"></i> +254712918350</p>
+        <p style="color:#cbd5e1"><i class="fas fa-map-marker-alt text-sky-400"></i> Nakuru, Kenya</p>
+        <div style="display:flex;gap:0.5rem;margin-top:0.6rem">
+          <a href="https://github.com/prevyne" target="_blank" rel="noreferrer" style="color:#cbd5e1"><i class="fab fa-github fa-2x"></i></a>
+          <a href="https://www.linkedin.com/in/prevyne-okech" target="_blank" rel="noreferrer" style="color:#cbd5e1"><i class="fab fa-linkedin fa-2x"></i></a>
+        </div>
+      </div>
 
-                emailjs.sendForm(serviceID, templateID, this)
-                    .then(() => {
-                        showMessage('Message transmitted successfully!');
-                        contactForm.reset();
-                    }, (err) => {
-                        showMessage('Transmission failed. Check connection.', true);
-                        console.error('EmailJS Error:', JSON.stringify(err));
-                    });
-            });
+      <form id="contact-form" class="space-y-4" aria-label="Contact form">
+        <label for="name" style="color:#cbd5e1;font-weight:600;font-size:0.9rem">Your Alias</label>
+        <input id="name" name="name" class="form-input" required>
+
+        <label for="email" style="color:#cbd5e1;font-weight:600;font-size:0.9rem;margin-top:0.5rem">Your Secure Email</label>
+        <input id="email" name="email" type="email" class="form-input" required>
+
+        <label for="message" style="color:#cbd5e1;font-weight:600;font-size:0.9rem;margin-top:0.5rem">Message Payload</label>
+        <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
+
+        <button type="submit" class="btn-primary" aria-label="Send message">Transmit Message</button>
+      </form>
+    </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="max-width:1100px;margin:0 auto;padding:0 1rem">
+      <p>&copy; <span id="year"></span> Prevyne Okech Odhiambo. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Audio element (CDN first, local fallback) -->
+  <audio id="bg-audio" preload="auto" loop>
+    <!-- Replace the CDN URL below with your preferred royalty-free loop if you want. -->
+    <source src="https://cdn.pixabay.com/audio/2023/07/03/sample_funky_loop.mp3" type="audio/mpeg">
+    <source src="assets/audio/funky_loop.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Audio toggle (appears when hero visible) -->
+  <div id="audio-toggle" class="audio-toggle" role="button" aria-label="Toggle Sound" tabindex="0">
+    <div class="audio-tooltip">Toggle Sound</div>
+    <i class="fas fa-headphones icon" aria-hidden="true"></i>
+  </div>
+
+  <!-- Deferred scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <script>
+    // Small helper
+    const qs = (s) => document.querySelector(s);
+
+    // Preloader animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const loader = qs('#loader-bar-inner');
+      let progress = 0;
+      const tick = () => {
+        progress = Math.min(100, progress + Math.random()*18);
+        loader.style.width = progress + '%';
+        if (progress < 100) setTimeout(tick, 240);
+      };
+      tick();
+    });
+
+    // Ensure Three.js init waits until THREE is available
+    function whenThreeReady(cb, timeout = 5000) {
+      const start = Date.now();
+      const iv = setInterval(() => {
+        if (window.THREE) { clearInterval(iv); cb(); }
+        if (Date.now() - start > timeout) { clearInterval(iv); console.warn('THREE did not load in time'); }
+      }, 50);
+    }
+
+    // When everything (including deferred scripts and images) is ready
+    window.addEventListener('load', () => {
+      // Hide preloader gracefully
+      const pre = qs('#preloader');
+      pre.style.transition = 'opacity 400ms ease';
+      pre.style.opacity = 0;
+      setTimeout(() => pre.parentNode && pre.parentNode.removeChild(pre), 600);
+
+      // mark nav active and set year
+      qs('.nav-link[href="#hero"]').classList.add('active');
+      qs('#year').textContent = new Date().getFullYear();
+
+      // Intersection reveal
+      const sections = document.querySelectorAll('.section');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            entry.target.querySelectorAll('.card').forEach((c,i)=> c.style.transitionDelay = `${i*60}ms`);
+          }
+        });
+      }, {threshold:0.14});
+      sections.forEach(s => io.observe(s));
+
+      // Show audio toggle only when hero is visible
+      const audioToggle = qs('#audio-toggle');
+      const hero = qs('#hero');
+      const heroObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) audioToggle.classList.add('visible');
+          else audioToggle.classList.remove('visible');
+        });
+      }, {threshold: 0.35});
+      heroObserver.observe(hero);
+
+      // Navbar active highlight on scroll
+      window.dispatchEvent(new Event('scroll'));
+    });
+
+    // Mobile nav toggle
+    const menuBtn = qs('#menuBtn');
+    const mobileNav = qs('#mobileNav');
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.display = mobileNav.style.display === 'none' ? 'block' : 'none';
+    });
+
+    // Navbar glow on scroll & active link
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 80) nav.style.boxShadow = '0 8px 40px rgba(0,191,255,0.06)';
+      else nav.style.boxShadow = 'none';
+
+      const scrollPos = window.scrollY + window.innerHeight/2;
+      document.querySelectorAll('.section').forEach(section => {
+        const id = section.id;
+        const link = document.querySelector('.nav-link[href="#' + id + '"]');
+        if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+          if (link) link.classList.add('active');
+        }
+      });
+    });
+
+    // EmailJS contact (deferred)
+    window.addEventListener('load', () => {
+      try { emailjs.init('iAC4BvOGycdAcvDLA'); } catch(e){}
+      const form = qs('#contact-form');
+      if (form) {
+        form.addEventListener('submit', (ev) => {
+          ev.preventDefault();
+          const serviceID = 'service_6iv1go7';
+          const templateID = 'template_u322tjj';
+          const btn = form.querySelector('button[type="submit"]');
+          btn.disabled = true; btn.style.opacity = 0.7;
+          emailjs.sendForm(serviceID, templateID, form)
+            .then(() => { alert('Message transmitted successfully!'); form.reset(); })
+            .catch(err => { console.error('EmailJS Error', err); alert('Transmission failed. Check connection.'); })
+            .finally(()=>{ btn.disabled = false; btn.style.opacity = 1; });
+        });
+      }
+    });
+
+    // THREE.JS PARTICLES (init after script load, with mobile fallback and mouse parallax)
+    whenThreeReady(() => {
+      try {
+        const canvas = qs('#hero-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias: true });
+        renderer.setClearColor(0x000000, 0);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        camera.position.z = 50;
+
+        // adaptive particle count
+        const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 900;
+        const PARTICLE_COUNT = isMobile ? 3000 : 6500;
+
+        const positions = new Float32Array(PARTICLE_COUNT * 3);
+        const sizes = new Float32Array(PARTICLE_COUNT);
+        const colors = new Float32Array(PARTICLE_COUNT * 3);
+
+        for (let i = 0; i < PARTICLE_COUNT; i++) {
+          const i3 = i * 3;
+          const radius = (Math.random() - 0.5) * 160;
+          positions[i3] = (Math.random() - 0.5) * 160; // x
+          positions[i3 + 1] = (Math.random() - 0.5) * 100; // y
+          positions[i3 + 2] = (Math.random() - 0.5) * 200; // z (depth)
+          sizes[i] = Math.random() * 0.9 + 0.1;
+          const r = 0.0 + Math.random() * 0.02;
+          const g = 0.78 + Math.random() * 0.05;
+          const b = 1.0;
+          colors[i3] = r; colors[i3+1] = g; colors[i3+2] = b;
         }
 
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        document.querySelectorAll('#mobile-menu .nav-link').forEach(link => {
-            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        const geometry = new THREE.BufferGeometry();
+        geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+
+        // PointsMaterial with size attenuation
+        const material = new THREE.PointsMaterial({
+          vertexColors: false,
+          color: 0x00BFFF,
+          size: isMobile ? 0.08 : 0.12,
+          transparent: true,
+          blending: THREE.AdditiveBlending,
+          depthWrite: false,
         });
 
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    const elementsToAnimate = entry.target.querySelectorAll('.animate-in');
-                    elementsToAnimate.forEach((el, index) => {
-                        el.style.transitionDelay = `${index * 100}ms`;
-                    });
-                }
-            });
-        }, { threshold: 0.15 });
-        sections.forEach(section => observer.observe(section));
+        const points = new THREE.Points(geometry, material);
+        scene.add(points);
 
-        const navLinks = document.querySelectorAll('.nav-link');
-        window.addEventListener('scroll', () => {
-            const scrollPos = window.scrollY + window.innerHeight / 2;
-            sections.forEach(section => {
-                if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active-nav', section.id === link.getAttribute('href').substring(1));
-                    });
-                }
-            });
-        });
-
-        let scene, camera, renderer, particleSystem;
+        // gentle rotation and flicker parameters
         let mouseX = 0, mouseY = 0;
-        const canvas = document.getElementById('hero-canvas');
-        
-        function initThree() {
-            scene = new THREE.Scene();
-            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-            camera.position.z = 50;
+        let targetX = 0, targetY = 0;
+        const clock = new THREE.Clock();
 
-            renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            renderer.setClearColor(0x000000, 0);
-
-            const particleCount = 7000;
-            const positions = new Float32Array(particleCount * 3);
-            for (let i = 0; i < particleCount * 3; i++) {
-                positions[i] = (Math.random() - 0.5) * 150;
-            }
-            const particles = new THREE.BufferGeometry();
-            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-            const particleMaterial = new THREE.PointsMaterial({
-                color: 0x00BFFF,
-                size: 0.15,
-                transparent: true,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
-                sizeAttenuation: true
-            });
-
-            particleSystem = new THREE.Points(particles, particleMaterial);
-            scene.add(particleSystem);
-            
-            animate();
+        function onMove(e) {
+          mouseX = (e.clientX - window.innerWidth / 2) / 10;
+          mouseY = (e.clientY - window.innerHeight / 2) / 12;
         }
+        window.addEventListener('mousemove', onMove, { passive: true });
 
         function animate() {
-            requestAnimationFrame(animate);
-            const time = Date.now() * 0.0001;
-            
-            camera.position.x += (mouseX - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY - camera.position.y) * 0.05;
-            camera.lookAt(scene.position);
+          requestAnimationFrame(animate);
+          const t = Date.now() * 0.00012;
+          // parallax smoothing
+          targetX += (mouseX - targetX) * 0.05;
+          targetY += (mouseY - targetY) * 0.05;
+          camera.position.x = targetX;
+          camera.position.y = -targetY;
+          camera.lookAt(scene.position);
 
-            particleSystem.rotation.y = time * 0.5;
-            renderer.render(scene, camera);
-        }
-        
-        function onDocumentMouseMove(event) {
-            mouseX = (event.clientX - window.innerWidth / 2) / 10;
-            mouseY = (event.clientY - window.innerHeight / 2) / 10;
+          // subtle rotation & flicker
+          points.rotation.y = t * 0.28;
+          const positionsAtt = geometry.attributes.position.array;
+          const len = positionsAtt.length;
+          for (let i = 2; i < len; i += 3) {
+            // slight z wobble for shimmer effect
+            positionsAtt[i] += Math.sin((i + t * 1000) * 0.0003) * 0.0008;
+          }
+          geometry.attributes.position.needsUpdate = true;
+
+          renderer.render(scene, camera);
         }
 
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+        function onResize() {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
         }
+        window.addEventListener('resize', onResize);
 
-        document.addEventListener('mousemove', onDocumentMouseMove, false);
-        window.addEventListener('resize', onWindowResize, false);
-        
-        window.onload = function() {
-            initThree();
-            document.querySelector('.nav-link[href="#hero"]').classList.add('active-nav');
-        };
-    </script>
+        // set renderer size initially
+        onResize();
+        animate();
+      } catch (err) {
+        console.error('Three.js init error', err);
+      }
+    }, 6000);
+
+    // Audio control: dual source element and toggle with tooltip + pulse on beat
+    (function setupAudioUI(){
+      const audio = qs('#bg-audio');
+      const toggle = qs('#audio-toggle');
+      const icon = toggle.querySelector('.icon');
+      let isPlaying = false;
+
+      // small audio analyser for pulse effect (graceful degradation)
+      let analyser, audioCtx, sourceNode;
+      function tryCreateAnalyser() {
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          sourceNode = audioCtx.createMediaElementSource(audio);
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 256;
+          sourceNode.connect(analyser);
+          analyser.connect(audioCtx.destination);
+        } catch (e) {
+          analyser = null;
+        }
+      }
+
+        // toggle playback
+      function togglePlay() {
+        if (!audio) return;
+        if (!isPlaying) {
+          // resume context if needed
+          if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
+          const p = audio.play();
+          if (p && p.catch) p.catch(()=>{ /* autoplay prevented */ });
+          toggle.classList.add('active');
+          isPlaying = true;
+        } else {
+          audio.pause();
+          toggle.classList.remove('active');
+          isPlaying = false;
+        }
+      }
+
+      // tooltip via title and explicit element already present
+      toggle.addEventListener('click', () => {
+        // first user gesture: ensure audio context allowed
+        if (!audioCtx) tryCreateAnalyser();
+        togglePlay();
+      });
+
+      // keyboard accessibility
+      toggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }
+      });
+
+      // animate pulse based on analyser (if available)
+      function pulseLoop() {
+        if (analyser && isPlaying) {
+          const data = new Uint8Array(analyser.frequencyBinCount);
+          analyser.getByteFrequencyData(data);
+          let sum = 0;
+          for (let i=0;i<data.length;i++) sum += data[i];
+          const avg = sum / data.length;
+          const scale = 1 + (avg / 900); // subtle
+          icon.style.transform = `scale(${1 + (avg/2000)})`;
+          icon.style.filter = `drop-shadow(0 0 ${4 + (avg/40)}px rgba(0,191,255,0.9))`;
+        } else {
+          icon.style.transform = '';
+          icon.style.filter = '';
+        }
+        requestAnimationFrame(pulseLoop);
+      }
+      pulseLoop();
+
+      // expose for debug
+      window._portfolioAudio = { audio, toggle };
+    })();
+
+    // set year if not set earlier
+    document.addEventListener('DOMContentLoaded', () => {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    });
+
+  </script>
+
 </body>
 </html>
