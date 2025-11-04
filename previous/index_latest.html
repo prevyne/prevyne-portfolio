@@ -7,6 +7,7 @@
   <meta name="description" content="Prevyne Okech — Full Stack Developer (Django, MERN, Flask). Portfolio and project showcase." />
   <meta name="keywords" content="Prevyne Okech, Django, React, Flask, Full-Stack Developer, Kenya, Portfolio" />
   <meta name="author" content="Prevyne Okech" />
+  <!-- Open Graph -->
   <meta property="og:title" content="Prevyne Okech | Software Engineer" />
   <meta property="og:description" content="Portfolio of Prevyne Okech — Full Stack Developer specializing in Django, MERN and Flask." />
   <meta property="og:type" content="website" />
@@ -14,8 +15,10 @@
   <meta property="og:url" content="https://prevyne.dev/" />
   <link rel="icon" href="assets/images/profile_best.jpg" type="image/png" />
 
+  <!-- Tailwind (kept for convenience) -->
   <script src="https://cdn.tailwindcss.com" defer></script>
 
+  <!-- Fonts & icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
@@ -46,15 +49,6 @@
       background:linear-gradient(180deg, rgba(0,0,0,0.88), rgba(10,10,26,0.96));
       z-index:9999;flex-direction:column;gap:12px;
     }
-    /* Moved from inline style */
-    .preloader-img {
-      width:88px;
-      height:88px;
-      border-radius:999px;
-      border:3px solid rgba(100,255,218,0.08);
-      object-fit:cover;
-      box-shadow:0 8px 40px rgba(0,191,255,0.06);
-    }
     .loader-bar{
       width:240px;height:10px;border-radius:999px;background:rgba(255,255,255,0.04);overflow:hidden;
       box-shadow:0 0 24px rgba(var(--primary-rgb),0.06) inset;
@@ -77,111 +71,90 @@
     .nav-link{position:relative;color:#cbd5e1;text-decoration:none;padding-bottom:4px}
     .nav-link:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--primary);transform:scaleX(0);transform-origin:right;transition:transform 250ms ease}
     .nav-link:hover:after,.nav-link.active:after{transform:scaleX(1);transform-origin:left}
-    
-    .menu-btn{
-      display:none; /* Shown in media query */
-      background:transparent;
-      border:0;
-      cursor:pointer;
-      color:rgba(100,255,218,0.9); /* Moved from inline */
-      font-size:20px; /* Moved from inline */
-    }
-
-    /* Mobile Nav Menu */
-    #mobileNav{
-      display:none; /* Toggled by JS */
-      background:rgba(0,0,0,0.6);
-      padding:0.5rem;
-    }
-    /* This class is added by JS to show the menu */
-    #mobileNav.is-open {
-      display: block;
-    }
-    #mobileNav .container{
-      display:flex;
-      flex-direction:column;
-      gap:8px
-    }
+    .menu-btn{display:none;background:transparent;border:0;cursor:pointer}
 
     /* Sections */
     .section{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:6rem 1rem;position:relative;overflow:hidden;background:var(--bg)}
     .section-inner{z-index:2;width:100%;max-width:1100px;margin:0 auto}
     .visible{opacity:1;transform:none}
-    
-    /* Centralized Section Title (moved from inline) */
-    .section-title {
-      color:var(--accent);
-      font-size:2rem;
-      font-weight:700;
-      text-align:center;
-      margin-bottom:1.25rem;
-    }
+    .section{opacity:0;transform:translateY(10px);transition:all 600ms cubic-bezier(.2,.9,.2,1)}
 
     /* Hero specifics */
     #hero{position:relative;}
     #hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;display:block}
     #hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(10,10,26,0.6) 0%, rgba(10,10,26,0.9) 100%);z-index:0}
-    .hero-content{position:relative;z-index:1;text-align:center;padding-top:3rem}
-    .hero-title{font-size:clamp(2rem,5vw,4rem);line-height:1.02;color:var(--accent);font-weight:700}
-    .hero-title {
-      position: relative;
-      color: var(--accent);
-      animation: glitch 1.2s infinite;
+    .hero-content{position:relative;z-index:1;text-align:center;padding-top:2.5rem}
+    /* Glitch title */
+    .hero-title{
+      font-size:clamp(1.8rem,5vw,3.6rem);
+      line-height:1.02;
+      color:var(--accent);
+      font-weight:800;
+      position:relative;
+      display:inline-block;
+      letter-spacing:0.6px;
+      padding:6px 8px;
     }
+    /* RGB split layers using pseudo-elements */
     .hero-title::before,
-    .hero-title::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      width: 100%;
-      color: var(--accent);
-      clip: rect(0, 900px, 0, 0);
+    .hero-title::after{
+      content:attr(data-text);
+      position:absolute;
+      left:0;top:0;
+      clip-path:inset(0 0 0 0);
+      color:var(--accent);
+      opacity:0.9;
+      pointer-events:none;
     }
-    .hero-title::before {
-      animation: glitchTop 1.5s infinite linear alternate-reverse;
-      color: #ff00c8;
+    .hero-title::before{
+      color: rgba(100,255,218,0.95);
+      transform:translateX(-2px);
+      mix-blend-mode:screen;
+      text-shadow: -1px 0px 0 rgba(0,191,255,0.4);
+      z-index:2;
+      animation:glitch-anim-1 3s infinite linear;
     }
-    .hero-title::after {
-      animation: glitchBottom 1.5s infinite linear alternate-reverse;
-      color: #00fff2;
+    .hero-title::after{
+      color: rgba(64,191,255,0.95);
+      transform:translateX(2px);
+      mix-blend-mode:screen;
+      text-shadow: 1px 0px 0 rgba(100,255,218,0.28);
+      z-index:1;
+      animation:glitch-anim-2 2.8s infinite linear;
     }
+
+    @keyframes glitch-anim-1 {
+      0% { clip-path: inset(0 0 0 0); transform: translateX(-2px) translateY(0) skewX(0deg); opacity:0.95; }
+      8% { clip-path: inset(0 0 60% 0); transform: translateX(-6px) translateY(-2px) skewX(-6deg); opacity:1; }
+      10% { clip-path: inset(30% 0 0 0); transform: translateX(-1px) translateY(2px) skewX(3deg); opacity:0.9; }
+      20% { clip-path: inset(0 0 0 0); transform: translateX(-2px) translateY(0) skewX(0deg); opacity:0.95; }
+      100% { clip-path: inset(0 0 0 0); transform: translateX(-2px) translateY(0) skewX(0deg); opacity:0.95; }
+    }
+    @keyframes glitch-anim-2 {
+      0% { clip-path: inset(0 0 0 0); transform: translateX(2px) translateY(0) skewX(0deg); opacity:0.9; }
+      6% { clip-path: inset(50% 0 0 0); transform: translateX(8px) translateY(1px) skewX(4deg); opacity:1; }
+      12% { clip-path: inset(0 0 30% 0); transform: translateX(1px) translateY(-1px) skewX(-2deg); opacity:0.92; }
+      30% { clip-path: inset(0 0 0 0); transform: translateX(2px) translateY(0) skewX(0deg); opacity:0.9; }
+      100% { clip-path: inset(0 0 0 0); transform: translateX(2px) translateY(0) skewX(0deg); opacity:0.9; }
+    }
+
+    /* soften glitch on small screens */
+    @media (max-width: 640px) {
+      .hero-title::before, .hero-title::after {
+        animation-duration: 6s;
+        transform: translateX(0);
+        opacity: 0.7;
+      }
+      .hero-title{font-size:clamp(1.4rem,6vw,2rem);}
+    }
+
     .hero-sub{color:#93C5FD;margin-top:0.75rem}
-    .hero-ctas{margin-top:1.5rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
+    .hero-ctas{margin-top:1.25rem;display:flex;gap:0.75rem;justify-content:center;flex-wrap:wrap}
 
-    .btn-primary{background:var(--primary);color:#041025;padding:0.85rem 1.25rem;border-radius:10px;font-weight:700;border:2px solid rgba(0,191,255,0.12);box-shadow:0 8px 30px rgba(var(--primary-rgb),0.06);text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:transform 150ms ease,box-shadow 150ms}
+    .btn-primary{background:var(--primary);color:#041025;padding:0.75rem 1rem;border-radius:10px;font-weight:700;border:2px solid rgba(0,191,255,0.12);box-shadow:0 8px 30px rgba(var(--primary-rgb),0.06);text-decoration:none;display:inline-flex;align-items:center;gap:0.6rem;transition:transform 150ms ease,box-shadow 150ms}
     .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(var(--primary-rgb),0.12)}
-    .btn-ghost{border:1px solid rgba(255,255,255,0.06);padding:0.75rem 1rem;border-radius:8px;color:#cfe9ff;text-decoration:none}
+    .btn-ghost{border:1px solid rgba(255,255,255,0.06);padding:0.65rem 0.9rem;border-radius:8px;color:#cfe9ff;text-decoration:none}
 
-    /* About Section Styles (moved from inline) */
-    .about-grid {
-      align-items:center;
-      gap:1.25rem;
-    }
-    .about-image-wrapper {
-      display:flex;
-      justify-content:center;
-    }
-    .about-img {
-      width:220px;
-      height:220px;
-      border-radius:12px;
-      object-fit:cover;
-      border:4px solid rgba(100,255,218,0.06);
-    }
-    .about-text {
-      color:#cbd5e1;
-      line-height:1.6;
-    }
-    
-    /* Education & Skills Grid */
-    .section-grid {
-      margin-top:0.75rem;
-    }
-    /* Card padding (moved from inline) */
-    #education .card, #skills .card {
-      padding: 1rem;
-    }
-    
     /* Cards */
     .grid{display:grid;gap:1.25rem}
     .projects-grid{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
@@ -203,49 +176,9 @@
     /* skill/education grid */
     .small-grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
 
-    /* Contact Section Styles */
-    .contact-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:1.25rem;
-    }
-    .contact-vectors h3 {
-      font-weight:700;
-      color:#fff;
-    }
-    .contact-vectors p {
-      color:#cbd5e1;
-    }
-    /* Replaced Tailwind text-sky-400 with our CSS var */
-    .contact-vectors .fas, .contact-vectors .fab {
-      color: var(--primary);
-      margin-right: 0.5rem; /* Added for spacing */
-    }
-    .contact-socials {
-      display:flex;
-      gap:0.5rem;
-      margin-top:0.6rem;
-    }
-    .contact-socials a {
-      color:#cbd5e1;
-      font-size: 1.5rem; /* Replaces fa-2x */
-    }
-
     /* contact form */
-    .form-label {
-      color:#cbd5e1;
-      font-weight:600;
-      font-size:0.9rem;
-      display: block; /* Ensures it's on its own line */
-      margin-bottom: 0.25rem; /* Adds space above input */
-    }
     .form-input{background:#1F2937;border:1px solid #4B5563;color:#F3F4F6;padding:0.75rem;border-radius:8px;width:100%}
     .form-input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 15px rgba(var(--primary-rgb),0.12)}
-    /* Fix for textarea resize */
-    textarea.form-input {
-      resize: vertical;
-      min-height: 100px;
-    }
 
     /* audio control */
     .audio-toggle{
@@ -260,76 +193,34 @@
 
     /* footer */
     footer{padding:2rem 1rem;text-align:center;border-top:1px solid rgba(255,255,255,0.03);color:#9CA3AF}
-    /* Added container class to footer content */
-    footer .container {
-      max-width:1100px;
-      margin:0 auto;
-      padding:0 1rem;
-    }
 
     /* responsive tweaks */
+    @media (max-width:1024px){
+      .section{padding:4rem 1rem}
+    }
     @media (max-width:768px){
       .nav-links{display:none}
       .menu-btn{display:inline-block}
-      .section{padding:4rem 1rem}
       .card img{height:140px}
       .audio-toggle{right:12px;bottom:12px}
-
-      /* --- 🚀 THIS IS THE RESPONSIVE FIX --- */
-      /* This rule now works because the inline style is gone */
-      .contact-grid {
-        grid-template-columns: 1fr; /* Stack the columns */
-        gap: 2rem; /* Add space between them */
-      }
     }
     @media (max-width:480px){
       .hero-title{font-size:1.6rem}
       .card img{height:120px}
       .loader-bar{width:180px}
     }
-
-    /* Glitch effect (Unchanged) */
-    .glitch {
-            position: relative;
-            color: white;
-            animation: glitch-skew 1s infinite linear alternate-reverse;
-        }
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--background-dark);
-            overflow: hidden;
-        }
-        .glitch::before {
-            left: 2px;
-            text-shadow: -2px 0 var(--secondary-glow);
-            animation: glitch-anim-1 2s infinite linear alternate-reverse;
-        }
-        .glitch::after {
-            left: -2px;
-            text-shadow: -2px 0 var(--primary-glow), 2px 2px var(--secondary-glow);
-            animation: glitch-anim-2 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim-1 { 0% { clip-path: inset(15% 0 86% 0); } 100% { clip-path: inset(80% 0 3% 0); } }
-        @keyframes glitch-anim-2 { 0% { clip-path: inset(50% 0 40% 0); } 100% { clip-path: inset(10% 0 75% 0); } }
-        @keyframes glitch-skew { 0% { transform: skewX(0deg); } 100% { transform: skewX(0.5deg); } }
-
   </style>
 </head>
 <body>
 
+  <!-- Preloader -->
   <div id="preloader" aria-hidden="true">
-    <img src="assets/images/profile_best.jpg" alt="Prevyne Okech" class="preloader-img">
+    <img src="assets/images/profile_best.jpg" alt="Prevyne Okech" style="width:88px;height:88px;border-radius:999px;border:3px solid rgba(100,255,218,0.08);object-fit:cover;box-shadow:0 8px 40px rgba(0,191,255,0.06)">
     <p>Launching Portfolio Interface…</p>
     <div class="loader-bar"><i id="loader-bar-inner"></i></div>
   </div>
 
+  <!-- Navigation -->
   <nav>
     <div class="container nav-inner">
       <a class="brand" href="#">PREVYNE_OKECH</a>
@@ -342,11 +233,11 @@
         <a class="nav-link" href="#contact">Contact</a>
       </div>
       <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-label="Open menu">
-        <i class="fas fa-bars"></i>
+        <i class="fas fa-bars" style="color:rgba(100,255,218,0.9);font-size:20px"></i>
       </button>
     </div>
-    <div id="mobileNav">
-      <div class="container">
+    <div id="mobileNav" style="display:none;background:rgba(0,0,0,0.6);padding:0.5rem;">
+      <div class="container" style="display:flex;flex-direction:column;gap:8px">
         <a class="nav-link" href="#hero">Home</a>
         <a class="nav-link" href="#about">About</a>
         <a class="nav-link" href="#education">Education</a>
@@ -357,27 +248,29 @@
     </div>
   </nav>
 
+  <!-- Hero -->
   <section id="hero" class="section" aria-label="Hero">
     <canvas id="hero-canvas" aria-hidden="true"></canvas>
     <div class="section-inner hero-content">
-      <h1 class="hero-title glitch" aria-level="1" data-text="Okech Prevyne Odhiambo">Okech Prevyne Odhiambo</h1>
+      <h1 class="hero-title" data-text="Okech Prevyne Odhiambo">Okech Prevyne Odhiambo</h1>
       <p class="hero-sub">Software Engineer / Virtual Assistant / Web Developer</p>
       <div class="hero-ctas">
         <a class="btn-primary" href="#contact">Initiate Contact</a>
-        <a class="btn-ghost" href="assets/resume/Prevyne_Okech_Resume.pdf" download>Download Resume</a>
+        <a class="btn-ghost" href="assets/Prevyne_Okech_Resume.pdf" download>Download Resume</a>
       </div>
     </div>
   </section>
 
+  <!-- About -->
   <section id="about" class="section" aria-label="About">
     <div class="section-inner">
-      <h2 class="section-title">About Me</h2>
-      <div class="grid small-grid about-grid">
-        <div class="about-image-wrapper">
-          <img src="assets/images/profile_best.jpg" alt="Prevyne Okech portrait" class="about-img" loading="lazy">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">About Me</h2>
+      <div class="grid small-grid" style="align-items:center;gap:1.25rem">
+        <div style="display:flex;justify-content:center">
+          <img src="assets/images/profile_best.jpg" alt="Prevyne Okech portrait" style="width:220px;height:220px;border-radius:12px;object-fit:cover;border:4px solid rgba(100,255,218,0.06)" loading="lazy">
         </div>
         <div>
-          <p class="about-text">
+          <p style="color:#cbd5e1;line-height:1.6">
             I am a full stack software engineer and web applications developer with over four years of experience, specializing in the M.E.R.N stack and Django. My mission is to use technology to build digital products and provide pragmatic solutions for enterprises and SMEs.
           </p>
         </div>
@@ -385,23 +278,24 @@
     </div>
   </section>
 
+  <!-- Education -->
   <section id="education" class="section" aria-label="Education">
     <div class="section-inner">
-      <h2 class="section-title">Education</h2>
-      <div class="grid small-grid section-grid">
-        <div class="card">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Education</h2>
+      <div class="grid small-grid" style="margin-top:0.75rem">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">BSc in Information Technology</h3>
           <p class="card-desc">Kabarak University, Kenya — Graduated Dec 2024</p>
         </div>
-        <div class="card">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Virtual Assistance</h3>
           <p class="card-desc">ALX Academy Africa — Graduated Sep 2024</p>
         </div>
-        <div class="card">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Back-end Pro-dev Web Dev</h3>
           <p class="card-desc">ALX Academy Africa — Ongoing</p>
         </div>
-        <div class="card">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Software Engineering</h3>
           <p class="card-desc">Power Learn Project Africa — Feb–Jul 2025</p>
         </div>
@@ -409,23 +303,24 @@
     </div>
   </section>
 
+  <!-- Skills -->
   <section id="skills" class="section" aria-label="Skills">
     <div class="section-inner">
-      <h2 class="section-title">Skillset Matrix</h2>
-      <div class="grid projects-grid section-grid">
-        <div class="card">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Skillset Matrix</h2>
+      <div class="grid projects-grid" style="margin-top:0.75rem">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Web Development</h3>
           <p class="card-desc">HTML5, CSS3, JavaScript (ES6+), React.js, Node.js, Django, Flask</p>
         </div>
-        <div class="card">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Software Engineering</h3>
           <p class="card-desc">Python, C/C++, Git, Docker, DevOps essentials, SQLAlchemy</p>
         </div>
-        <div class="card">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Virtual Assistance</h3>
           <p class="card-desc">Email management, Data entry, Social media management, Google Workspaces</p>
         </div>
-        <div class="card">
+        <div class="card" style="padding:1rem">
           <h3 class="card-title">Soft Skills</h3>
           <p class="card-desc">Problem-solving, Communication, Teamwork, Time management</p>
         </div>
@@ -433,15 +328,16 @@
     </div>
   </section>
 
+  <!-- Projects -->
   <section id="projects" class="section" aria-label="Projects">
     <div class="section-inner">
-      <h2 class="section-title">Project Showcase</h2>
-      <div class="grid projects-grid section-grid">
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Project Showcase</h2>
+      <div class="grid projects-grid" style="margin-top:0.75rem">
         <div class="card">
           <img src="src/kazi-match.jpg" alt="Kazi-Match" loading="lazy">
           <div class="card-overlay">
             <a class="overlay-btn" href="https://kazi-match.vercel.app/" target="_blank" rel="noreferrer">Live Demo</a>
-            <a class="overlay-btn" href="https://github.com/prevyne/KaziMatch" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="overlay-btn" href="https://github.com/prevyne/juakali-marketplace" target="_blank" rel="noreferrer">GitHub</a>
           </div>
           <div class="card-body">
             <h3 class="card-title">Kazi-Match Platform</h3>
@@ -453,7 +349,7 @@
           <img src="src/Chatbot_2.png" alt="General Enquiry Chatbot" loading="lazy">
           <div class="card-overlay">
             <a class="overlay-btn" href="https://chatbot-0zdm.onrender.com/" target="_blank" rel="noreferrer">Live Demo</a>
-            <a class="overlay-btn" href="https://github.com/prevyne/General-enquiry-chatbot" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="overlay-btn" href="https://github.com/prevyne" target="_blank" rel="noreferrer">GitHub</a>
           </div>
           <div class="card-body">
             <h3 class="card-title">General Enquiry Chatbot</h3>
@@ -477,66 +373,64 @@
     </div>
   </section>
 
+  <!-- Contact -->
   <section id="contact" class="section" aria-label="Contact">
     <div class="section-inner">
-      <h2 class="section-title">Establish Connection</h2>
-      <div class="contact-grid">
-        <div class="contact-vectors">
-          <h3>Contact Vectors</h3>
-          <p><i class="fas fa-envelope"></i> prevyneoketch6@gmail.com</p>
-          <p><i class="fas fa-phone"></i> +254712918350</p>
-          <p><i class="fas fa-map-marker-alt"></i> Nakuru, Kenya</p>
-          <div class="contact-socials">
-            <a href="https://github.com/prevyne" target="_blank" rel="noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.linkedin.com/in/prevyne-okech" target="_blank" rel="noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          </div>
+      <h2 class="section-title" style="color:var(--accent);font-size:2rem;font-weight:700;text-align:center;margin-bottom:1.25rem">Establish Connection</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem">
+      <div>
+        <h3 style="font-weight:700;color:#fff">Contact Vectors</h3>
+        <p style="color:#cbd5e1"><i class="fas fa-envelope text-sky-400"></i> prevyneoketch6@gmail.com</p>
+        <p style="color:#cbd5e1"><i class="fas fa-phone text-sky-400"></i> +254712918350</p>
+        <p style="color:#cbd5e1"><i class="fas fa-map-marker-alt text-sky-400"></i> Nakuru, Kenya</p>
+        <div style="display:flex;gap:0.5rem;margin-top:0.6rem">
+          <a href="https://github.com/prevyne" target="_blank" rel="noreferrer" style="color:#cbd5e1"><i class="fab fa-github fa-2x"></i></a>
+          <a href="https://www.linkedin.com/in/prevyne-okech" target="_blank" rel="noreferrer" style="color:#cbd5e1"><i class="fab fa-linkedin fa-2x"></i></a>
         </div>
-
-        <form id="contact-form" class="space-y-4" aria-label="Contact form">
-          <div>
-            <label for="name" class="form-label">Your Alias</label>
-            <input id="name" name="name" class="form-input" required>
-          </div>
-
-          <div>
-            <label for="email" class="form-label">Your Secure Email</label>
-            <input id="email" name="email" type="email" class="form-input" required>
-          </div>
-
-          <div>
-            <label for="message" class="form-label">Message Payload</label>
-            <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
-          </div>
-
-          <button type="submit" class="btn-primary" aria-label="Send message">Transmit Message</button>
-        </form>
       </div>
+
+      <form id="contact-form" class="space-y-4" aria-label="Contact form">
+        <label for="name" style="color:#cbd5e1;font-weight:600;font-size:0.9rem">Your Alias</label>
+        <input id="name" name="name" class="form-input" required>
+
+        <label for="email" style="color:#cbd5e1;font-weight:600;font-size:0.9rem;margin-top:0.5rem">Your Secure Email</label>
+        <input id="email" name="email" type="email" class="form-input" required>
+
+        <label for="message" style="color:#cbd5e1;font-weight:600;font-size:0.9rem;margin-top:0.5rem">Message Payload</label>
+        <textarea id="message" name="message" rows="5" class="form-input" required></textarea>
+
+        <button type="submit" class="btn-primary" aria-label="Send message">Transmit Message</button>
+      </form>
+    </div>
     </div>
   </section>
 
   <footer>
-    <div class="container">
+    <div style="max-width:1100px;margin:0 auto;padding:0 1rem">
+      <p>Built with ❤️ using TailwindCSS & Three.js</p>
       <p>&copy; <span id="year"></span> Prevyne Okech Odhiambo. All rights reserved.</p>
     </div>
   </footer>
 
+  <!-- Audio element (GitHub raw primary, local fallback) -->
   <audio id="bg-audio" preload="auto" loop>
-    <source src="https://assets.pixabay.com/audio/2024/05/08/audio_1e59170846.mp3" type="audio/mpeg">
-    <source src="assets/audio/hope-166419.mp3" type="audio/mpeg">
+    <source src="https://raw.githubusercontent.com/prevyne/prevyne-portfolio/main/assets/audio/funky_loop.mp3" type="audio/mpeg">
+    <source src="assets/audio/funky_loop.mp3" type="audio/mpeg">
   </audio>
 
+  <!-- Audio toggle (appears when hero visible) -->
   <div id="audio-toggle" class="audio-toggle" role="button" aria-label="Toggle Sound" tabindex="0">
     <div class="audio-tooltip">Toggle Sound</div>
     <i class="fas fa-headphones icon" aria-hidden="true"></i>
   </div>
 
+  <!-- Deferred scripts -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 
   <script>
     // Small helper
     const qs = (s) => document.querySelector(s);
-    const qsa = (s) => document.querySelectorAll(s); // Added helper
 
     // Preloader animation
     document.addEventListener('DOMContentLoaded', () => {
@@ -545,13 +439,13 @@
       const tick = () => {
         progress = Math.min(100, progress + Math.random()*18);
         loader.style.width = progress + '%';
-        if (progress < 100) setTimeout(tick, 240);
+        if (progress < 100) setTimeout(tick, 220);
       };
       tick();
     });
 
     // Ensure Three.js init waits until THREE is available
-    function whenThreeReady(cb, timeout = 5000) {
+    function whenThreeReady(cb, timeout = 8000) {
       const start = Date.now();
       const iv = setInterval(() => {
         if (window.THREE) { clearInterval(iv); cb(); }
@@ -572,7 +466,7 @@
       qs('#year').textContent = new Date().getFullYear();
 
       // Intersection reveal
-      const sections = qsa('.section'); // Use helper
+      const sections = document.querySelectorAll('.section');
       const io = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -598,52 +492,27 @@
       window.dispatchEvent(new Event('scroll'));
     });
 
-    // --- 🚀 UPGRADED Mobile Nav Toggle ---
+    // Mobile nav toggle
     const menuBtn = qs('#menuBtn');
     const mobileNav = qs('#mobileNav');
-    const menuIcon = qs('#menuBtn .fas'); // Get the icon itself
-
-    if (menuBtn && mobileNav && menuIcon) {
-      menuBtn.addEventListener('click', () => {
-        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
-        menuBtn.setAttribute('aria-expanded', String(!expanded));
-        
-        // Toggle a class on the nav element
-        mobileNav.classList.toggle('is-open');
-
-        // Toggle the icon
-        if (mobileNav.classList.contains('is-open')) {
-          menuIcon.classList.remove('fa-bars');
-          menuIcon.classList.add('fa-times');
-        } else {
-          menuIcon.classList.remove('fa-times');
-          menuIcon.classList.add('fa-bars');
-        }
-      });
-
-      // --- ✨ NEW: Close menu when a link is clicked ---
-      qsa('#mobileNav .nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-          menuBtn.setAttribute('aria-expanded', 'false');
-          mobileNav.classList.remove('is-open');
-          menuIcon.classList.remove('fa-times');
-          menuIcon.classList.add('fa-bars');
-        });
-      });
-    }
+    menuBtn && menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      mobileNav.style.display = mobileNav.style.display === 'none' ? 'block' : 'none';
+    });
 
     // Navbar glow on scroll & active link
     window.addEventListener('scroll', () => {
-      const nav = qs('nav'); // Use helper
+      const nav = document.querySelector('nav');
       if (window.scrollY > 80) nav.style.boxShadow = '0 8px 40px rgba(0,191,255,0.06)';
       else nav.style.boxShadow = 'none';
 
       const scrollPos = window.scrollY + window.innerHeight/2;
-      qsa('.section').forEach(section => { // Use helper
+      document.querySelectorAll('.section').forEach(section => {
         const id = section.id;
-        const link = qs('.nav-link[href="#' + id + '"]'); // Use helper
+        const link = document.querySelector('.nav-link[href="#' + id + '"]');
         if (section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos) {
-          qsa('.nav-link').forEach(l => l.classList.remove('active')); // Use helper
+          document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
           if (link) link.classList.add('active');
         }
       });
@@ -668,7 +537,7 @@
       }
     });
 
-    // THREE.JS PARTICLES (Unchanged from your file)
+    // THREE.JS PARTICLES (init after script load, with mobile fallback and mouse parallax)
     whenThreeReady(() => {
       try {
         const canvas = qs('#hero-canvas');
@@ -678,11 +547,11 @@
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        camera.position.z = 50;
 
-        // adaptive particle count
+        // adaptive particle count and camera distance
         const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth < 900;
         const PARTICLE_COUNT = isMobile ? 3000 : 6500;
+        camera.position.z = isMobile ? 62 : 50;
 
         const positions = new Float32Array(PARTICLE_COUNT * 3);
         const sizes = new Float32Array(PARTICLE_COUNT);
@@ -690,15 +559,13 @@
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
           const i3 = i * 3;
-          const radius = (Math.random() - 0.5) * 160;
           positions[i3] = (Math.random() - 0.5) * 160; // x
           positions[i3 + 1] = (Math.random() - 0.5) * 100; // y
           positions[i3 + 2] = (Math.random() - 0.5) * 200; // z (depth)
           sizes[i] = Math.random() * 0.9 + 0.1;
-          const r = 0.0 + Math.random() * 0.02;
-          const g = 0.78 + Math.random() * 0.05;
-          const b = 1.0;
-          colors[i3] = r; colors[i3+1] = g; colors[i3+2] = b;
+          colors[i3] = 0.0 + Math.random() * 0.02;
+          colors[i3+1] = 0.78 + Math.random() * 0.05;
+          colors[i3+2] = 1.0;
         }
 
         const geometry = new THREE.BufferGeometry();
@@ -706,11 +573,10 @@
         geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
         geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-        // PointsMaterial with size attenuation
         const material = new THREE.PointsMaterial({
           vertexColors: false,
           color: 0x00BFFF,
-          size: isMobile ? 0.08 : 0.12,
+          size: isMobile ? 0.06 : 0.12,
           transparent: true,
           blending: THREE.AdditiveBlending,
           depthWrite: false,
@@ -722,20 +588,20 @@
         // gentle rotation and flicker parameters
         let mouseX = 0, mouseY = 0;
         let targetX = 0, targetY = 0;
-        const clock = new THREE.Clock();
 
         function onMove(e) {
-          mouseX = (e.clientX - window.innerWidth / 2) / 10;
-          mouseY = (e.clientY - window.innerHeight / 2) / 12;
+          mouseX = (e.clientX - window.innerWidth / 2) / (isMobile ? 18 : 10);
+          mouseY = (e.clientY - window.innerHeight / 2) / (isMobile ? 22 : 12);
         }
         window.addEventListener('mousemove', onMove, { passive: true });
 
         function animate() {
           requestAnimationFrame(animate);
           const t = Date.now() * 0.00012;
+
           // parallax smoothing
-          targetX += (mouseX - targetX) * 0.05;
-          targetY += (mouseY - targetY) * 0.05;
+          targetX += (mouseX - targetX) * 0.06;
+          targetY += (mouseY - targetY) * 0.06;
           camera.position.x = targetX;
           camera.position.y = -targetY;
           camera.lookAt(scene.position);
@@ -743,13 +609,12 @@
           // subtle rotation & flicker
           points.rotation.y = t * 0.28;
           const positionsAtt = geometry.attributes.position.array;
-          const len = positionsAtt.length;
-          for (let i = 2; i < len; i += 3) {
-            // slight z wobble for shimmer effect
-            positionsAtt[i] += Math.sin((i + t * 1000) * 0.0003) * 0.0008;
+          for (let i = 2; i < positionsAtt.length; i += 3) {
+            positionsAtt[i] += Math.sin((i + t * 1000) * 0.00035) * 0.0009;
           }
           geometry.attributes.position.needsUpdate = true;
 
+          renderer.setSize(window.innerWidth, window.innerHeight);
           renderer.render(scene, camera);
         }
 
@@ -760,22 +625,22 @@
         }
         window.addEventListener('resize', onResize);
 
-        // set renderer size initially
+        // initial size + animate
         onResize();
         animate();
       } catch (err) {
         console.error('Three.js init error', err);
       }
-    }, 6000);
+    }, 7000);
 
-    // Audio control (Unchanged from your file)
+    // Audio control: GitHub primary + local fallback; toggle with tooltip + pulse on beat
     (function setupAudioUI(){
       const audio = qs('#bg-audio');
       const toggle = qs('#audio-toggle');
       const icon = toggle.querySelector('.icon');
       let isPlaying = false;
 
-      // small audio analyser for pulse effect (graceful degradation)
+      // audio analyser for pulse effect (graceful degradation)
       let analyser, audioCtx, sourceNode;
       function tryCreateAnalyser() {
         try {
@@ -790,11 +655,10 @@
         }
       }
 
-        // toggle playback
+      // toggle playback
       function togglePlay() {
         if (!audio) return;
         if (!isPlaying) {
-          // resume context if needed
           if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume().catch(()=>{});
           const p = audio.play();
           if (p && p.catch) p.catch(()=>{ /* autoplay prevented */ });
@@ -807,14 +671,11 @@
         }
       }
 
-      // tooltip via title and explicit element already present
+      // click / keyboard
       toggle.addEventListener('click', () => {
-        // first user gesture: ensure audio context allowed
         if (!audioCtx) tryCreateAnalyser();
         togglePlay();
       });
-
-      // keyboard accessibility
       toggle.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle.click(); }
       });
@@ -827,7 +688,6 @@
           let sum = 0;
           for (let i=0;i<data.length;i++) sum += data[i];
           const avg = sum / data.length;
-          const scale = 1 + (avg / 900); // subtle
           icon.style.transform = `scale(${1 + (avg/2000)})`;
           icon.style.filter = `drop-shadow(0 0 ${4 + (avg/40)}px rgba(0,191,255,0.9))`;
         } else {
@@ -842,7 +702,7 @@
       window._portfolioAudio = { audio, toggle };
     })();
 
-    // set year if not set earlier
+    // init year
     document.addEventListener('DOMContentLoaded', () => {
       const yearEl = document.getElementById('year');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
