@@ -8,7 +8,7 @@
   <meta name="keywords" content="Prevyne Okech, Django, React, Flask, Full-Stack Developer, Kenya, Portfolio" />
   <meta name="author" content="Prevyne Okech" />
   <meta property="og:title" content="Prevyne Okech | Software Engineer" />
-  <meta property="og:description" content="Portfolio of Prevyne Okech — Full Stack Developer specializing in Django, MERN and Flask." />
+  <meta property="og:description" content="Portfolio of Prevyne Okech — Back-end software engineer | Internal tools developer." />
   <meta property="og:type" content="website" />
   <meta property="og:image" content="src/Corporate.png" />
   <meta property="og:url" content="https://prevyne.dev/" />
@@ -79,21 +79,20 @@
     .nav-link:hover:after,.nav-link.active:after{transform:scaleX(1);transform-origin:left}
     
     .menu-btn{
-      display:none; /* Shown in media query */
+      display:none;
       background:transparent;
       border:0;
       cursor:pointer;
-      color:rgba(100,255,218,0.9); /* Moved from inline */
-      font-size:20px; /* Moved from inline */
+      color:rgba(100,255,218,0.9);
+      font-size:20px;
     }
 
-    /* Mobile Nav Menu */
     #mobileNav{
-      display:none; /* Toggled by JS */
+      display:none; 
       background:rgba(0,0,0,0.6);
       padding:0.5rem;
     }
-    /* This class is added by JS to show the menu */
+   
     #mobileNav.is-open {
       display: block;
     }
@@ -275,8 +274,6 @@
       .card img{height:140px}
       .audio-toggle{right:12px;bottom:12px}
 
-      /* --- 🚀 THIS IS THE RESPONSIVE FIX --- */
-      /* This rule now works because the inline style is gone */
       .contact-grid {
         grid-template-columns: 1fr; /* Stack the columns */
         gap: 2rem; /* Add space between them */
@@ -288,7 +285,7 @@
       .loader-bar{width:180px}
     }
 
-    /* Glitch effect (Unchanged) */
+    /* Glitch effect*/
     .glitch {
             position: relative;
             color: white;
@@ -364,7 +361,7 @@
       <p class="hero-sub">Software Engineer / Virtual Assistant / Web Developer</p>
       <div class="hero-ctas">
         <a class="btn-primary" href="#contact">Initiate Contact</a>
-        <a class="btn-ghost" href="assets/resume/Prevyne_Okech_Resume.pdf" download>Download Resume</a>
+        <a class="btn-ghost" href="assets/resume/Prevyne-Okech-Python-Backend-AI-Resume.pdf" download>Download Resume</a>
       </div>
     </div>
   </section>
@@ -378,8 +375,7 @@
         </div>
         <div>
           <p class="about-text">
-            I am a full stack software engineer and web applications developer with over four years of experience, specializing in the M.E.R.N stack and Django. My mission is to use technology to build digital products and provide pragmatic solutions for enterprises and SMEs.
-          </p>
+            Python backend developer with strong skills in Django REST Framework and PyQt6 for desktop applications. Successfully delivered a responsive job board API and an AI-Powered skill-matching platform leveraging Scikit-learn, demonstrating ability to integrate machine learning with backend systems. Dedicated to developing innovative, high-performance backend services tailored to user needs.
         </div>
       </div>
     </div>
@@ -400,10 +396,10 @@
   <!--Development experience-->
   <section id="education" class="section" aria-label="Education">
     <div class="section-inner">
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title">Technical Experience</h2>
       <div class="grid small-grid section-grid">
         <div class="card">
-          <h3 class="card-title">Back-end Pro-dev</h3>
+          <h3 class="card-title">Pro-dev Back-end Engineering</h3>
           <p class="card-desc">ALX Academy Africa | June 2025 — October 2025</p>
         </div>
         <div class="card">
@@ -424,16 +420,16 @@
       <h2 class="section-title">Skillset Matrix</h2>
       <div class="grid projects-grid section-grid">
         <div class="card">
-          <h3 class="card-title">Web Development</h3>
-          <p class="card-desc">HTML5, CSS3, JavaScript (ES6+), React.js, Node.js, Django, Flask</p>
+          <h3 class="card-title">Web & Desktop Development</h3>
+          <p class="card-desc">Django, Flask, HTML5, CSS3, JavaScript (ES6+), React.js, Node.js, PyQt6</p>
         </div>
         <div class="card">
-          <h3 class="card-title">Software Engineering</h3>
-          <p class="card-desc">Python, C/C++, Git, Docker, DevOps essentials, SQLAlchemy</p>
+          <h3 class="card-title">Software Engineering DevOps</h3>
+          <p class="card-desc">Python, Git, Docker, Celery, Kubernetes, MySQL, PostgreSQL</p>
         </div>
         <div class="card">
-          <h3 class="card-title">Virtual Assistance</h3>
-          <p class="card-desc">Email management, Data entry, Social media management, Google Workspaces</p>
+          <h3 class="card-title">AI/ML</h3>
+          <p class="card-desc">Scikit-learn, TensorFlow, Pandas, Numpy</p>
         </div>
         <div class="card">
           <h3 class="card-title">Soft Skills</h3>
@@ -499,7 +495,7 @@
         <div class="card">
           <img src="src/chatbot.png" alt="Admissions Enquiry Bot" loading="lazy">
           <div class="card-overlay">
-            <a class="overlay-btn" href="https://github.com/prevyne/College-Admissions-Enquiry-Chatbot-with-Python" target="_blank" rel="noreferrer">View Source</a>
+            <a class="overlay-btn" href="https://github.com/prevyne/college-admissions--enquiry-chatbot-Ver2.0.git" target="_blank" rel="noreferrer">View Source</a>
             <a class="overlay-btn" href="#" onclick="return false;">Live Demo</a>
           </div>
           <div class="card-body">
@@ -569,9 +565,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 
   <script>
-    // Small helper
     const qs = (s) => document.querySelector(s);
-    const qsa = (s) => document.querySelectorAll(s); // Added helper
+    const qsa = (s) => document.querySelectorAll(s);
 
     // Preloader animation
     document.addEventListener('DOMContentLoaded', () => {
@@ -633,10 +628,10 @@
       window.dispatchEvent(new Event('scroll'));
     });
 
-    // --- 🚀 UPGRADED Mobile Nav Toggle ---
+    // --- Upgraded Mobile Nav Toggle ---
     const menuBtn = qs('#menuBtn');
     const mobileNav = qs('#mobileNav');
-    const menuIcon = qs('#menuBtn .fas'); // Get the icon itself
+    const menuIcon = qs('#menuBtn .fas');
 
     if (menuBtn && mobileNav && menuIcon) {
       menuBtn.addEventListener('click', () => {
@@ -656,7 +651,7 @@
         }
       });
 
-      // --- ✨ NEW: Close menu when a link is clicked ---
+      // --- NEW: Close menu when a link is clicked ---
       qsa('#mobileNav .nav-link').forEach(link => {
         link.addEventListener('click', () => {
           menuBtn.setAttribute('aria-expanded', 'false');
@@ -703,7 +698,7 @@
       }
     });
 
-    // THREE.JS PARTICLES (Unchanged from your file)
+    // THREE.JS PARTICLES
     whenThreeReady(() => {
       try {
         const canvas = qs('#hero-canvas');
@@ -803,14 +798,14 @@
       }
     }, 6000);
 
-    // Audio control (Unchanged from your file)
+    // Audio control
     (function setupAudioUI(){
       const audio = qs('#bg-audio');
       const toggle = qs('#audio-toggle');
       const icon = toggle.querySelector('.icon');
       let isPlaying = false;
 
-      // small audio analyser for pulse effect (graceful degradation)
+      // small audio analyser for pulse effect
       let analyser, audioCtx, sourceNode;
       function tryCreateAnalyser() {
         try {
@@ -862,7 +857,7 @@
           let sum = 0;
           for (let i=0;i<data.length;i++) sum += data[i];
           const avg = sum / data.length;
-          const scale = 1 + (avg / 900); // subtle
+          const scale = 1 + (avg / 900);
           icon.style.transform = `scale(${1 + (avg/2000)})`;
           icon.style.filter = `drop-shadow(0 0 ${4 + (avg/40)}px rgba(0,191,255,0.9))`;
         } else {
